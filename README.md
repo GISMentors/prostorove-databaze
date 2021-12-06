@@ -1,2 +1,2 @@
-# prostorove-databaze
-Školení na téma prostorových geodatabází
+Úvod do prostorových databází
+=============================
