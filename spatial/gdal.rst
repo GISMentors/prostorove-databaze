@@ -12,7 +12,7 @@ ogrinfo
 =======
 
 Nástroj ogrinfo umožňuje zobrazit informace o zdroji dat,
-pokud jej zkombinujeme s SQL dotazem můžeme si např. vypsat
+pokud jej kombinujeme s SQL dotazem můžeme si např. vypsat
 plochu největší parcely v našem cvičném území.
 
 .. code-block:: bash
