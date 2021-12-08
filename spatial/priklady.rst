@@ -8,8 +8,8 @@ V této části se podíváme na další funkce, které můžete
 v prostorových databázích využívat. Projdeme si je
 na konkrétních příkladech.
 
-ST_Distance
-===========
+ST_Buffer
+=========
 
 Oblíbenou úlohou je hledání vztahu, do kterého vstupuje
 obálka :sqlcmd:`ST_Buffer` kolem geometrie. Např. nás může zajímat seznam stavebních
