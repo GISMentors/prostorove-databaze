@@ -5,7 +5,7 @@ Použití prostorových dotazů v GDAL
 ----------------------------------
 
 Dotazy je možné rovněž používat v rámci knihovny GDAL,
-a to v různých případech užití. Jedou skupinou je využití
+a to v různých případech užití. Jednou skupinou je využití
 GDAL bin utils, které se ovládají z příkazového řádku (terminálu).
 
 ogrinfo
