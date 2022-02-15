@@ -26,12 +26,14 @@ Soubory s indexací
 
 I soubory typu ESRI Shapefile je možné opatřit
 prostorovým indexem. Díky tomu indexu je pak dotazování
-výrazně rychlejší.
+výrazně rychlejší (např.
+`GDAL <https://gdal.org/drivers/vector/shapefile.html>`_ vytváří soubory s
+příponou `.sbn`). Soubor pro atributy - DBF - však žádnou indexaci neumožňuje.
 
-Zatímco ESRI Shapefile očekává, že pro jeden typ dat bude nutné mít
-několik souborů, existují řešení např. GeoPackage, které
-ukládají data do jednoho souboru a to i v případě několika
-typů geoprvků.
+
+Zatímco Shapefile očekává, že pro každý typ geometrie dat (body, line, polygony) 
+bude nutné mít několik souborů, existují řešení např. GeoPackage, které ukládají
+data do jednoho souboru a to i v případě několika typů geoprvků.
 
 Některé formáty však primárně indexy nemají a tedy jej jejich
 účel v zásadě jiný. Příkladem může být GML, který je spíše jazykem
@@ -59,6 +61,10 @@ V rámci tohoto školní se této problematice věnovat nebudeme.
 Rastry
 ======
 
-Rastrová data je možno samozřejmě ukládat jak do souborů,
-tak na server nebo do cloudu. Dotazování nad nimi však
-není předmětem tohoto školení.
+Do prostorových databází - souborových i těch, které využívají architekturu
+klient-server - lze ukládat i rastrová data. Toho je zhusta využíváno u
+některých dlaždicových rastrových formátů.
+
+Výhoda uložení rastrů přímo do databáze je jednotná platforma pro jejich
+zpracování (jazyk SQL).
+
