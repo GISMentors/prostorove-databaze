@@ -1,20 +1,8 @@
 .. index::
    single: Spatialite
 
-.. _wfs:
-
-Spatialite
-----------
-
-`Spatialite <https://www.gaia-gis.it/fossil/libspatialite/index>`_ navazuje na oblíbené souborové řešení
-`SQLite <https://sqlite.org>`_ a rozšiřuje funkcionalitu o základní prostorové dotazy a
-operace dle standardu Simple Features Access.
-
-.. tip:: Více o standardu Simple Features Access ve školení :skoleni:`PostGIS
-         <postgis-zacatecnik/kapitoly/1_uvod.html>`.
-
-SQLite
-======
+Souborové databáze - SQLite
+===========================
 
 Již před příchodem SQLite existovaly souborové databáze. Jako příklad
 můžeme uvést kdysi velmi oblíbený MS Access (JET). Výhoda souborového řešení
@@ -31,15 +19,23 @@ nebo jiného jazyka.
 
    Prohlížeč DB Browser pro SQLite.
 
-SpatiaLite
-==========
+Spatialite
+----------
 
-Jak již bylo napsáno, tak Spatialite přidává možnost realizovat
-prostorové dotazy nad daty a zavádí geometrické datové typy. K tomu slouží
+`Spatialite <https://www.gaia-gis.it/fossil/libspatialite/index>`_ je prostorové
+rozšíření databáze
+`SQLite <https://sqlite.org>`_. Přidává prostorové datové typy a základní prostorové dotazy a
+operace dle standardu OGC Simple Features Access.
+
+.. tip:: Více o standardu Simple Features Access ve školení :skoleni:`PostGIS
+         <postgis-zacatecnik/kapitoly/1_uvod.html>`.
+
+
+K efektivním prostorovým dotazům slouží
 prostorové indexy v databázi.  Samotné dotazy pak realizuje knihovna (ovladač),
 kterým se aplikace k databázi připojuje.
 
 .. figure:: images/spatialite-gui.png
    :class: middle
-           
+
    Prohlížeč spatialite-gui.

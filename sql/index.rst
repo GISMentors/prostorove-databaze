@@ -8,6 +8,7 @@ Jazyk SQL
    uvod
    atributy
    join
+   view
 
 
 

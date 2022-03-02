@@ -8,6 +8,10 @@ Dotazy je možné rovněž používat v rámci knihovny GDAL,
 a to v různých případech užití. Jednou skupinou je využití
 GDAL bin utils, které se ovládají z příkazového řádku (terminálu).
 
+Obrovsky silnou zbraní knihovny GDAL je, že nám umožní vybírat prvky pomocí
+prostorových dotazů i z původně ne-SQL datových formátů (Shapefile, GML a
+podobně).
+
 ogrinfo
 =======
 

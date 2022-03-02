@@ -4,7 +4,9 @@
 GeoPackage
 ----------
 
-GeoPackage je formát založený na Spatialite. Oproti Spatialite
+OGC GeoPackage je otevřený standard OGC. Jedná se o formát založený na SQLite. V
+nejčastěji používané variantě využívá
+ale i knihonvy pro SpatiaLite. Oproti SpatiaLite
 přidává další struktury a to zejména metadata a také možnosti
 uložení rastrových dat.
 
@@ -35,4 +37,3 @@ včetně prostorových dotazů.
    :class: large
 
    Správce databází GeoPackage v QGIS
-

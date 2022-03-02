@@ -4,10 +4,13 @@
 Úvod do prostorových dotazů
 ---------------------------
 
-V rámci prostorových dotazů můžeme využívat celou řadu
-funkcí a také operátory. V úvodu se podíváme na několik
-funkcí a jeden operátor. Další funkce budou popsány
-v píkladech.
+Prostorová data jsou v rámci databází úplně normální data uložena v tabulce, kde
+jeden z atributů (sloupečků) je geometrie objektu. Prostorové 
+
+Prostorové dotazy nejsou nic jiného, že standardní databázové
+:sqlcmd:`SELECT`-ty s tím, že např. v podmínce :sqlcmd:`WHERE` aplikujeme
+některý z prostorových filtrů pomocí speciálních funkcí nebo operátorů (rozdíl
+si ukážeme).
 
 Základní funkce
 ===============
@@ -18,8 +21,9 @@ funkce pro převody geometrií a základní informace o geometrii.
 ST_AsText
 ^^^^^^^^^
 
-Tato funkce slouží k zobrazení tzv. WKT (Well Known Text) zápisu
-geometrie. Může nám pomoci ke kontrole obsahu, např. zda máme
+Geometrie jsou v databázi uloženy ve formátu WKB (well know binary) - pro lidi
+prakticky nečitelný zápis. Pro zobrazení ve formátu WKT (Well Known Text) slouží
+tato funkce.  Může nám pomoci ke kontrole obsahu, např. zda máme
 očekávané souřadnice.
 
 .. code-block:: sql
@@ -88,3 +92,14 @@ dvou parcel, tak jak je zobrazeno na dalším obrázku
    :class: large
 
    Parcely zasahující do osy ulice Podevsí
+
+Využití pohledu
+^^^^^^^^^^^^^^^
+Jak jsme si už říkali, můžeme tento :sqlcmd:`SELECT` uložit pro pozdější využití
+
+.. code-block:: sql
+
+   CREATE VIEW parcely_ulice AS
+   SELECT (p.KmenoveCislo || '/' || p.PododdeleniCisla) cislo, u.Nazev
+   FROM ulice u JOIN parcely p ON
+   (u.Nazev = 'Podevsí' AND (ST_Intersects(u.geom, p.geom)));

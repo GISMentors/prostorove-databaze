@@ -39,7 +39,8 @@ Některé formáty však primárně indexy nemají a tedy jej jejich
 účel v zásadě jiný. Příkladem může být GML, který je spíše jazykem
 a slouží pro výměnu geodat. U tohoto formátu si nejsme vědomi, že
 by k němu bylo možné vytvářet index a je tedy vhodné jej nepoužívat
-pro primární uložení geodat.
+pro primární uložení geodat. Podobně je na tom (zejména na webu) populární
+GeoJSON, GeoRSS a podobné.
 
 Serverové prostorové databáze
 =============================
@@ -47,15 +48,26 @@ Serverové prostorové databáze
 Zatímco souborová řešení předpokládají přístup přímo k souborům,
 serverová řešení soubory před uživateli schovávají za rozhraní.
 Výhodou serverového řešení je zejména přístup více uživatelů
-k datům a to včetně zabezpečení. Někteří uživatelé tak mohou
+k datům a to včetně centrálně řešeného zabezpečení. Někteří uživatelé tak mohou
 data pouze číst. Jiní mohou např. modifikovat vybraná data a
 správci mohou provádět zálohy dat a přiřazovat práva.
+
+Nevýhoda použití databázového serveru (centrálního řešení), je režije. Někdo
+musí databázový systém nainstalovat, konfigurovat, udržovat, přidělovat
+uživatelská práva, zálohovat, ...
 
 Cloudové prostorové databáze
 ============================
 
 Cloudové řešení může nabývat celé řady podob od cloud-optimized
-systémů řízení báze dat až po clustery běžných serverových řešení.
+systémů řízení báze dat až po clustery běžných serverových řešení. Jedná se
+vlastně o standardní serverové prostorové databáze, provozované v některé z dnes
+dostupných cloudových infrastruktur (Azure, Google, Amazon AWS, ...). Samozřejmě
+pod databází existuje (virtuální) stroj, na kterém je databáze provozovaná. Ten
+je ale optimalizovaný (co do konfigurace) pro běh databázových systémů. Cloudové
+prostředí umožňuje (relativně) jednoduchou zálohu, škálování, dostupnost pro
+určité síťové segmenty a tak podobně.
+
 V rámci tohoto školní se této problematice věnovat nebudeme.
 
 Rastry
@@ -63,8 +75,8 @@ Rastry
 
 Do prostorových databází - souborových i těch, které využívají architekturu
 klient-server - lze ukládat i rastrová data. Toho je zhusta využíváno u
-některých dlaždicových rastrových formátů.
+některých dlaždicových rastrových formátů, ale nejenom.
 
 Výhoda uložení rastrů přímo do databáze je jednotná platforma pro jejich
-zpracování (jazyk SQL).
-
+zpracování (jazyk SQL). Z hlediska výkonu jsou "rastry v databázi" považovány za
+relativně pomalé, což se ale časem zlepšuje.
