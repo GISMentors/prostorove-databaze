@@ -8,8 +8,8 @@ V této části se podíváme na další funkce, které můžete
 v prostorových databázích využívat. Projdeme si je
 na konkrétních příkladech.
 
-ST_Buffer
-=========
+ST_Buffer a ST_Intersects
+=========================
 
 Oblíbenou úlohou je hledání vztahu, do kterého vstupuje
 obálka :sqlcmd:`ST_Buffer` kolem geometrie. Např. nás může zajímat seznam stavebních
@@ -27,6 +27,41 @@ parcel, do kterých zasahuje obalová zóna kolem osy ulice Podevsí.
    :class: large
 
    ST_Buffer
+
+
+ST_Intersection
+===============
+
+Někdy nás může zajímat nejen zda se plochy překrývají, ale
+zajímá nás i geometrie toho překryvu. V tomto případě tedy kromě
+již použitých funkcí :sqlcmd:`ST_Buffer` a :sqlcmd:`ST_Intersects`
+přidáme funkci ST_Intersection, která nám vrátí právě plochy toho
+překryvu.
+
+.. code-block:: sql
+
+   SELECT ST_Intersection(ST_Buffer(u.geom, 5), p.geom) AS geom,
+   p.KmenoveCislo, p.PododdeleniCisla, p.DruhPozemkuKod
+   FROM ulice u JOIN parcely p ON
+   (u.Nazev = 'Podevsí' AND
+   ST_Intersects(ST_Buffer(u.geom, 5), p.geom)
+   AND p.DruhPozemkuKod = 13);
+
+.. figure:: images/ssql11.png
+   :class: large
+
+   ST_Intersection
+
+Výsledek dotazu můžeme přidat jako novou vrstvu do mapy.
+Toto je podrobněji popsáno dále.
+
+.. figure:: images/ssql12.png
+   :class: large
+
+   Zobrazení výsledku ST_Intersection v mapě
+
+Na obrázku jsou plochy vyzbačeny oranžovou barvou.
+
 
 ST_Touches
 ==========
