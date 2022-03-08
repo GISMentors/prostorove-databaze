@@ -91,3 +91,24 @@ maximální výměru v území v hektarech.
    :class: large
 
    Maximální výměra v hektarech
+
+
+Funkce součtu a agregace
+========================
+
+Častou operací je agregace dat. V našem příkladu můžeme pomocí agregace
+např. získat celkovou plochu všech pozemků daného typu.
+
+Funkce pro součet se označuje :sqlcmd:`SUM`. Klíčové slovo pro agregaci
+se označuje :sqlcmd:`GROUP BY`.
+
+.. code-block:: sql
+
+   SELECT DruhPozemkuKod, SUM(VymeraParcely) / 10000 FROM parcely GROUP BY DruhPozemkuKod;
+
+.. figure:: images/sql8.png
+   :class: large
+
+   Suma výměr v hektarech dle druhů pozemku
+
+Na obrázku vidíme že např. Pole (druh č. 2) má v Dolní Lhotě celkem 221 hektarů.
