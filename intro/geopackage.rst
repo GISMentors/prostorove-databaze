@@ -6,7 +6,7 @@ GeoPackage
 
 OGC GeoPackage je otevřený standard OGC. Jedná se o formát založený na SQLite. V
 nejčastěji používané variantě využívá
-ale i knihonvy pro SpatiaLite. Oproti SpatiaLite
+ale i knihovny pro SpatiaLite. Oproti SpatiaLite
 přidává další struktury a to zejména metadata a také možnosti
 uložení rastrových dat.
 

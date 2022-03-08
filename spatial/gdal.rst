@@ -84,4 +84,4 @@ Po zadání daného příkazu dostaneme soubor budovy.csv s následujícím obsa
 .. tip:: Vektorové formáty, do kterých můžete realizovat export najdete na
          <https://gdal.org/drivers/vector/index.html>.
 
-TODO - další využití
+.. TODO - další využití

@@ -17,7 +17,7 @@ GeoPackage a MBTiles jsou do vysoké míry zaměnitelné formáty (GeoPackage je
 univerzálnější a metadatově bohatší).
 
 Do MBTiles lze uložit pouze dlaždicovaná data (rastrová či vektorová ve formátu
-PBF), v souřadnicovém systému WebMercator (EPSG:3857). t
+PBF), v souřadnicovém systému WebMercator (EPSG:3857).
 
 .. figure:: images/mbtiles.png
    :class: middle

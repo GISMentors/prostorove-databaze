@@ -5,12 +5,11 @@
 ---------------------------
 
 Prostorová data jsou v rámci databází úplně normální data uložena v tabulce, kde
-jeden z atributů (sloupečků) je geometrie objektu. Prostorové 
+jeden z atributů (sloupečků) je geometrie objektu.
 
-Prostorové dotazy nejsou nic jiného, že standardní databázové
-:sqlcmd:`SELECT`-ty s tím, že např. v podmínce :sqlcmd:`WHERE` aplikujeme
-některý z prostorových filtrů pomocí speciálních funkcí nebo operátorů (rozdíl
-si ukážeme).
+Prostorové dotazy nejsou nic jiného, že standardní databázové dotazy typu
+:sqlcmd:`SELECT` s tím, že např. v podmínce :sqlcmd:`WHERE` aplikujeme
+některý z prostorových filtrů pomocí speciálních funkcí nebo operátorů.
 
 Základní funkce
 ===============
@@ -99,7 +98,7 @@ Jak jsme si už říkali, můžeme tento :sqlcmd:`SELECT` uložit pro pozdějš�
 
 .. code-block:: sql
 
-   CREATE VIEW parcely_ulice AS
+   CREATE VIEW parcely_podevsi AS
    SELECT (p.KmenoveCislo || '/' || p.PododdeleniCisla) cislo, u.Nazev
    FROM ulice u JOIN parcely p ON
    (u.Nazev = 'Podevsí' AND (ST_Intersects(u.geom, p.geom)));

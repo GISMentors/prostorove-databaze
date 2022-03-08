@@ -53,7 +53,7 @@ data pouze číst. Jiní mohou např. modifikovat vybraná data a
 správci mohou provádět zálohy dat a přiřazovat práva.
 
 Mezi známé zástupce této skupiny patří PostgreSQL/PostGIS,
-Oracle, MSSQL nebo třeba i MongoDB a ElasticSearch.
+Oracle, MSSQL nebo třeba i noSQL systémy jako je MongoDB a ElasticSearch.
 
 Nevýhoda použití databázového serveru (centrálního řešení), je režije. Někdo
 musí databázový systém nainstalovat, konfigurovat, udržovat, přidělovat
@@ -63,8 +63,10 @@ Cloudové prostorové databáze
 ============================
 
 Cloudové řešení může nabývat celé řady podob od cloud-optimized
-systémů řízení báze dat až po clustery běžných serverových řešení. Jedná se
-vlastně o standardní serverové prostorové databáze, provozované v některé z dnes
+systémů řízení báze dat až po clustery běžných serverových řešení.
+
+V případě clusterů se jedná v zásadě o standardní serverové prostorové databáze,
+provozované v některé z dnes
 dostupných cloudových infrastruktur (Azure, Google, Amazon AWS, ...). Samozřejmě
 pod databází existuje (virtuální) stroj, na kterém je databáze provozovaná. Ten
 je ale optimalizovaný (co do konfigurace) pro běh databázových systémů. Cloudové

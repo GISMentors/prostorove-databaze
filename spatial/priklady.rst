@@ -12,8 +12,17 @@ ST_Buffer a ST_Intersects
 =========================
 
 Oblíbenou úlohou je hledání vztahu, do kterého vstupuje
-obálka :sqlcmd:`ST_Buffer` kolem geometrie. Např. nás může zajímat seznam stavebních
-parcel, do kterých zasahuje obalová zóna kolem osy ulice Podevsí.
+obálka :sqlcmd:`ST_Buffer` kolem geometrie.
+
+Funkce má na vstupu geometrii a vzdálenost do které se má obálka konstruovat.
+
+.. code-block:: sql
+
+   SELECT ST_Buffer(geom, 5);
+
+Funkci pak můžeme použít uvnitř jiné funkce jako je nám již známý ST_Intersects
+a získat tak např. seznam stavebních parcel, do kterých zasahuje obalová zóna 5 m
+kolem osy ulice Podevsí.
 
 .. code-block:: sql
 
@@ -35,8 +44,18 @@ ST_Intersection
 Někdy nás může zajímat nejen zda se plochy překrývají, ale
 zajímá nás i geometrie toho překryvu. V tomto případě tedy kromě
 již použitých funkcí :sqlcmd:`ST_Buffer` a :sqlcmd:`ST_Intersects`
-přidáme funkci ST_Intersection, která nám vrátí právě plochy toho
-překryvu.
+přidáme funkci :sqlcmd:`ST_Intersection`, která nám vrátí právě plochy
+toho překryvu.
+
+Funkce má na vstupu dvě geometrie.
+
+.. code-block:: sql
+
+   SELECT ST_Intersection(u.geom, p.geom);
+
+Tyto mohou být ze stejné tabulky, nebo z různých tabulek nebo
+jak ukazuje následující příklad se může jednat i o výstup
+jiné funkce jako je :sqlcmd:`ST_Buffer`.
 
 .. code-block:: sql
 
@@ -69,6 +88,15 @@ ST_Touches
 Jiným častým příkladem může být hledání sousedů. Zde je možno
 využít funkci :sqlcmd:`ST_Touches`. Např. nás zajímají ulice,
 které se napojují na ulici Československých tankistů.
+
+Funkce má na vstupu dvě geometrie a vrací True nebo False.
+
+.. code-block:: sql
+
+   SELECT ST_Touches(u1.geom, u2.geom);
+
+Následující příklad ukazuje případ, kdy jsou geometrie z jedné
+tabulky.
 
 .. code-block:: sql
 

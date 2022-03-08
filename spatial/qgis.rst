@@ -4,7 +4,7 @@
 Použití prostorových dotazů v QGIS
 ----------------------------------
 
-Doposud uváděné dotazy nevracely geometrii,
+Doposud uváděné dotazy až na jednu výjimku nevracely geometrii,
 ale v rámci Správce databází je možné vrátit i geometrii
 a výsledek načíst do mapy.
 
@@ -35,4 +35,4 @@ umožní nám dialog následně načíst data jako vrstvu.
 
    Dotaz jako vrstva
 
-TODO - další využití
+.. TODO - další využití
