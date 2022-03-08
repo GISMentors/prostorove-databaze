@@ -21,4 +21,4 @@ ale nemůžeme zapisovat (až na výjimky) a jsou tak rychlé, jako optimalizova
 :sqlcmd:`SELECT`.
 
 Výhoda pohledu je rovněž v tom, že vždy vstupuje do originálních dat. Dotaz se
-tedy vždy provádí znovu. 
+tedy vždy provádí znovu.
