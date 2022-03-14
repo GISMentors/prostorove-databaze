@@ -25,20 +25,21 @@ Soubory s indexací
 ==================
 
 I soubory typu ESRI Shapefile je možné opatřit
-prostorovým indexem. Díky tomu indexu je pak dotazování
+prostorovým indexem. Díky tomuto indexu je pak dotazování
 výrazně rychlejší (např.
 `GDAL <https://gdal.org/drivers/vector/shapefile.html>`_ vytváří soubory s
 příponou `.sbn`). Soubor pro atributy - DBF - však žádnou indexaci neumožňuje.
 
 
 Zatímco ESRI Shapefile očekává, že pro každý typ geometrie dat (body, line, polygony)
-bude nutné mít několik souborů, existují řešení jako např. GeoPackage, které ukládají
-data do jednoho souboru a to i v případě několika typů geoprvků.
+bude nutné mít několik souborů, existují řešení jako např. `GeoPackage <https://www.geopackage.org/>`_,
+které ukládají data do jednoho souboru a to i v případě několika typů geoprvků. GeoPackage
+také obsahuje prostorové indexy.
 
 Některé formáty však primárně indexy nemají a tedy je jejich
 účel v zásadě jiný. Příkladem může být GML, který je spíše jazykem
 a slouží pro výměnu geodat. U tohoto formátu si nejsme vědomi, že
-by k němu bylo možné vytvářet index a je tedy vhodné jej nepoužívat
+by k němu bylo možné vytvářet index a není tedy vhodné jej používat
 pro primární uložení geodat. Podobně je na tom (zejména na webu) populární
 GeoJSON, GeoRSS a podobné.
 
@@ -58,6 +59,8 @@ Oracle, MSSQL nebo třeba i noSQL systémy jako je MongoDB a ElasticSearch.
 Nevýhoda použití databázového serveru (centrálního řešení), je režije. Někdo
 musí databázový systém nainstalovat, konfigurovat, udržovat, přidělovat
 uživatelská práva, zálohovat, ...
+
+Více o serverových řešeních se můžete dozvědět ve `školení PostGIS <https://training.gismentors.eu/postgis-zacatecnik/>`_
 
 Cloudové prostorové databáze
 ============================
