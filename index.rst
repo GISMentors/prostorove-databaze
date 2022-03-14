@@ -46,7 +46,7 @@ databáze mohou být serverové, souborové nebo cloudové.
 
 Školení se věnuje zejména souborovým prostorovým databázím,
 ke kterým je možné přistupovat např. s využitím
-knihovny GDAL `GDAL <http://gdal.org>`__.
+knihovny `GDAL <http://gdal.org>`__.
 
 .. only:: html
              
