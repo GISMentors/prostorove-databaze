@@ -79,7 +79,7 @@ Toto je podrobněji popsáno dále.
 
    Zobrazení výsledku ST_Intersection v mapě
 
-Na obrázku jsou plochy vyzbačeny oranžovou barvou.
+Na obrázku jsou plochy vyznačeny oranžovou barvou.
 
 
 ST_Touches
