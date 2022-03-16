@@ -21,23 +21,23 @@ plochu největší parcely v našem cvičném území.
 
 .. code-block:: bash
 
-   ogrinfo ruian.gpkg -sql "SELECT Max(ST_Area(ST_Buffer(geom, 5))) FROM parcely"
+   ogrinfo ruian.gpkg -sql "SELECT Max(ST_Area(geom)) FROM parcely"
 
 Po zadání daného příkazu dostaneme plochu největší parcely v území.
 
 .. code-block:: bash
 
   INFO: Open of `ruian.gpkg'
-        using driver `GPKG' successful.
+      using driver `GPKG' successful.
 
   Layer name: SELECT
   Geometry: None
   Feature Count: 1
   Layer SRS WKT:
   (unknown)
-  Max(ST_Area(ST_Buffer(geom, 5))): Real (0.0)
+  Max(ST_Area(geom)): Real (0.0)
   OGRFeature(SELECT):0
-    Max(ST_Area(ST_Buffer(geom, 5))) (Real) = 279528.457700693
+    Max(ST_Area(geom)) (Real) = 266024.887149993
 
 ogr2ogr
 =======
