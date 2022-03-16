@@ -11,10 +11,15 @@ Tabulka
 =======
 
 Tabulka v jazyce SQL (správně označovaná jako relace - bavíme se o tzv.
-relačních databázch) sestává
+relačních databázích) sestává
 z řádků. Každý řádek reprezentuje objekt. Objekt je popsán
 atributy a jejich hodnoty jsou uloženy ve sloupcích (buňkách)
 tabulky.
+
+.. figure:: images/sql0.png
+   :class: large
+
+   Tabulka (relace)
 
 
 Struktura dotazu
