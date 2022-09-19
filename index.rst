@@ -26,10 +26,10 @@
    single: Geodatabase
    single: prostorová databáze
 
-`Prostorové databáze jsou databáze prostorových dat,
-kde je možno se efektivně dotazovat pomocí prostorových
-dotazů na prostorové vazby mezi objekty a jevy. Prostorové
-databáze mohou být serverové, souborové nebo cloudové.
+Prostorové databáze umožňují se efektivně dotazovat pomocí
+prostorových dotazů na prostorové vazby mezi objekty a
+jevy. Prostorové databáze mohou být serverové, souborové nebo
+cloudové.
 
 .. only:: latex
 
@@ -46,7 +46,7 @@ databáze mohou být serverové, souborové nebo cloudové.
 
 Školení se věnuje zejména souborovým prostorovým databázím,
 ke kterým je možné přistupovat např. s využitím
-knihovny `GDAL <http://gdal.org>`__.
+knihovny `GDAL <https://gdal.org>`__.
 
 .. only:: html
              
@@ -92,15 +92,15 @@ Text dokumentu
 
    Online HTML verze textu školení je dostupná na adrese:
 
-   * http://training.gismentors.eu/geodatabase-zacatecnik/
+   * http://training.gismentors.eu/prostorove-databaze/
 
 Zdrojové texty školení jsou dostupné na adrese:
 
-* https://github.com/GISMentors/geodatabase-zacatecnik
+* https://github.com/GISMentors/prostorove-databaze
 
 Případné chyby nebo náměty na vylepšení můžete hlásit:
 
-* https://github.com/GISMentors/geodatabase-zacatecnik/issues
+* https://github.com/GISMentors/prostorove-databaze/issues
   
 
 

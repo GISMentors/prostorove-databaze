@@ -6,7 +6,7 @@
 
 Prostorová data můžeme ukládat v různé podobě.
 Způsob uložení se velmi často liší v tom, zda se jedná o
-reprezentaci v podobě rastru nebo vektoru, případně jiné struktury
+reprezentaci v podobě rastrových nebo vektorových dat, případně jiné struktury
 a zda jde o 2D nebo 3D (ND) data.
 
 Soubory bez indexace
@@ -33,7 +33,7 @@ příponou `.sbn`). Soubor pro atributy - DBF - však žádnou indexaci neumož�
 
 Zatímco ESRI Shapefile očekává, že pro každý typ geometrie dat (body, line, polygony)
 bude nutné mít několik souborů, existují řešení jako např. `GeoPackage <https://www.geopackage.org/>`_,
-které ukládají data do jednoho souboru a to i v případě několika typů geoprvků. GeoPackage
+které ukládají data do jednoho souboru, a to i v případě několika typů geoprvků. GeoPackage
 také obsahuje prostorové indexy.
 
 Některé formáty však primárně indexy nemají a tedy je jejich
@@ -49,18 +49,18 @@ Serverové prostorové databáze
 Zatímco souborová řešení předpokládají přístup přímo k souborům,
 serverová řešení soubory před uživateli schovávají za rozhraní.
 Výhodou serverového řešení je zejména přístup více uživatelů
-k datům a to včetně centrálně řešeného zabezpečení. Někteří uživatelé tak mohou
+k datům, a to včetně centrálně řešeného zabezpečení. Někteří uživatelé tak mohou
 data pouze číst. Jiní mohou např. modifikovat vybraná data a
 správci mohou provádět zálohy dat a přiřazovat práva.
 
 Mezi známé zástupce této skupiny patří PostgreSQL/PostGIS,
-Oracle, MSSQL nebo třeba i noSQL systémy jako je MongoDB a ElasticSearch.
+Oracle Spatial, MSSQL nebo třeba i noSQL systémy jako je MongoDB a ElasticSearch.
 
-Nevýhoda použití databázového serveru (centrálního řešení), je režije. Někdo
+Nevýhoda použití databázového serveru (centrálního řešení), je režie. Někdo
 musí databázový systém nainstalovat, konfigurovat, udržovat, přidělovat
 uživatelská práva, zálohovat, ...
 
-Více o serverových řešeních se můžete dozvědět ve `školení PostGIS <https://training.gismentors.eu/postgis-zacatecnik/>`_
+Více o serverových řešeních se můžete dozvědět ve :skoleni:`školení PostGIS <postgis-zacatecnik>`.
 
 Cloudové prostorové databáze
 ============================
@@ -78,8 +78,8 @@ určité síťové segmenty a tak podobně.
 
 V rámci tohoto školení se této problematice věnovat nebudeme.
 
-Rastry
-======
+Rastrová data
+=============
 
 Do prostorových databází - souborových i těch, které využívají architekturu
 klient-server - lze ukládat i rastrová data. Toho je zhusta využíváno u
@@ -95,17 +95,21 @@ Připojení prostorové databáze v QGIS
 V této fázi je dobré se podívat jak se taková prostorová databáze připojuje
 v prostředí nástroje QGIS.
 
-Nejdříve si nainstalujeme zásuvný modul RÚIAN, abychom si snadno stáhli
-existující data a uložili do formátu souborové prostorové geodatabáze.
+Nejdříve si nainstalujeme zásuvný modul RÚIAN, abychom si snadno
+stáhli cvičná data volně dostupná v rámci :wikipedia:`RÚIAN <Registr
+územní identifikace, adres a nemovitostí>` a uložili do formátu
+souborové prostorové geodatabáze (v našem případě použijeme formát OGC
+GeoPackage).
 
-Použijeme nabídku Zásuvné moduly / Správa a instalace zásuvných modulů.
+Použijeme nabídku :menuselection:`Zásuvné moduly --> Správa a
+instalace zásuvných modulů`.
 
 .. figure:: images/plugins.png
    :class: large
 
    Instalace zásuvných modulů
 
-Na dialogovém okně zadáme vyhledávat RUIAN a pak nalezený
+V dialogovém okně zadáme vyhledávat RUIAN a pak nalezený
 plugin nainstalujeme.
 
 .. figure:: images/ruian.png
@@ -113,19 +117,19 @@ plugin nainstalujeme.
 
    Instalace zásuvného modulu RUIAN
 
-Na liště zásuvných modulů přibyde tlačítko pro spuštění tohoto modulu.
+Na liště zásuvných modulů přibude tlačítko pro spuštění tohoto modulu.
 
 .. figure:: images/ruian2.png
    :class: large
 
    Spuštění zásuvného modulu RUIAN
 
-Po spuštění volíme uložení do OGC GeoPackage.
+Po spuštění volíme uložení do formátu OGC GeoPackage.
 
 .. figure:: images/ruian3.png
    :class: large
 
-   Uložení do OGC GeoPackage v modulu RUIAN
+   Uložení do OGC GeoPackage v zásuvném modulu RUIAN
 
 Zadáme obec Dolní Lhota (u Ostravy) a dáme importovat.
 
@@ -139,22 +143,22 @@ vidíme v mapě parcely a budovy obce Dolní Lhota.
 
 Připojení prostorové databáze lze v nástroji QGIS realizovat
 několika způsoby, ale zdá se, že nejlepší pokrytí různých
-typů úložišť v tomto případě nabízí panel Prohlížeč.
+typů úložišť v tomto případě nabízí panel :item:`Prohlížeč`.
 
-Pokud klikneme v Prohlížeči pravým tlačítkem myši na některý z
+Pokud klikneme v :item:`Prohlížeči` pravým tlačítkem myši na některý z
 typů úložišť prostorových databází dostaneme možnost vytvořit
-Nové připojení. V příkladu dále na obrázku jsou úložiště: GeoPackage,
-SpatiaLite, PostGIS, MSSQL a DB2.
+:item:`Nové připojení`. Na obrázku níže jsou dostupná následující
+úložiště: GeoPackage, SpatiaLite, PostGIS, MSSQL a DB2.
 
-Zvolíme GeoPackage a Nové připojení.
+Zvolíme :item:`GeoPackage` a :item:`Nové připojení`.
 
 .. figure:: images/connection.png
    :class: large
 
    Nové připojení GeoPackage
 
-Vybereme v předchozím kroku uložený ruian.gpkg a máme připojeno.
-V Prohlížeči pak můžeme procházet připojení a prohlížet si
+Vybereme v předchozím kroku uložený :file:`ruian.gpkg` a máme připojeno.
+V :item:`Prohlížeči` pak můžeme procházet připojení a prohlížet si
 tabulky této souborové databáze.
 
 .. figure:: images/connection2.png
@@ -164,4 +168,4 @@ tabulky této souborové databáze.
 
 
 Takto realizované připojení můžeme pak využívat např. ve
-Správci databází, kterého budeme používat dále.
+:item:`Správci databází`, kterého budeme používat dále.

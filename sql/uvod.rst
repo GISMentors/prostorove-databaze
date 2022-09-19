@@ -11,8 +11,8 @@ Tabulka
 =======
 
 Tabulka v jazyce SQL (správně označovaná jako relace - bavíme se o tzv.
-relačních databázích) sestává
-z řádků. Každý řádek reprezentuje objekt. Objekt je popsán
+relačních databázích) se sestává
+z řádků. Každý řádek reprezentuje objekt (označovaný také jako geoprvek). Objekt je popsán
 atributy a jejich hodnoty jsou uloženy ve sloupcích (buňkách)
 tabulky.
 
@@ -29,7 +29,7 @@ Dotaz pokládáme velmi jednoduše. Ptáme se takto:
 
 Vyber mi tyto atributy z této tabulky.
 
-V jazyce SQL pak zapíšeme pomocí klíčových slov :sqlcmd:`SELECT` a :sqlcmd:`FROM`.
+V jazyce SQL pak zapíšeme pomocí klíčových slov :sqlcmd:`SELECT` a :sqlcmd:`FROM`. Příkaz zakončíme středníkem.
 
 Celý zápis pak vypadá takto:
 
@@ -37,7 +37,7 @@ Celý zápis pak vypadá takto:
 
    SELECT atribut1, atribut2 FROM tabulka;
 
-Příklad výběru objektů z tabulky parcely databáze RÚIAN.
+Příklad výběru objektů z tabulky :dbtable:`parcely` databáze RÚIAN.
 
 .. code-block:: sql
 

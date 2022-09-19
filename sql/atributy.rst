@@ -14,7 +14,7 @@ V jazyce SQL je možné tvořit podmínky. Slouží k tomu celá řada klíčov�
 slov a operátorů, ale základní je slovo :sqlcmd:`WHERE` a matematické operátory
 jako je např. :sqlcmd:`=`.
 
-Pokud tedy chceme vybrat např. parcely, typu Vodní tok, který má kód 7 zapíšeme takto
+Pokud tedy chceme vybrat např. parcely, typu Vodní tok, který má kód 7, tak podmínku zapíšeme takto
 
 .. code-block:: sql
 
@@ -56,7 +56,7 @@ Další užitečná klíčová slova a výrazy
 =====================================
 
 Mezi často používaná klíčová slova patří :sqlcmd:`ORDER BY`,
-:sqlcmd:`AND`, :sqlcmd:`OR`, :sqlcmd:`NOT` a :sqlcmd:`()`
+:sqlcmd:`AND`, :sqlcmd:`OR`, :sqlcmd:`NOT` a :sqlcmd:`()`.
 
 Pomocí :sqlcmd:`ORDER BY` můžeme záznamy řadit dle vybraného atributu,
 atributů nebo výrazu.
