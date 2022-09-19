@@ -8,15 +8,16 @@ Dotazy je možné rovněž používat v rámci knihovny GDAL,
 a to v různých případech užití. Jednou skupinou je využití
 GDAL bin utils, které se ovládají z příkazového řádku (terminálu).
 
-Obrovsky silnou zbraní knihovny GDAL je, že nám umožní vybírat prvky pomocí
-prostorových dotazů i z původně ne-SQL datových formátů (Shapefile, GML a
-podobně).
+.. important:: 
+   Obrovsky silnou zbraní knihovny GDAL je, že nám umožní vybírat prvky pomocí
+   prostorových dotazů i z původně ne-SQL datových formátů (Shapefile, GML a
+   podobně).
 
 ogrinfo
 =======
 
-Nástroj ogrinfo umožňuje zobrazit informace o zdroji dat,
-pokud jej kombinujeme s SQL dotazem můžeme si např. vypsat
+Nástroj ogrinfo umožňuje zobrazit informace o zdroji dat.
+Pokud jej kombinujeme s SQL dotazem můžeme si např. vypsat
 plochu největší parcely v našem cvičném území.
 
 .. code-block:: bash
@@ -52,13 +53,13 @@ v běžném tabulkovém procesoru.
 .. code-block:: bash
 
    ogr2ogr -f "CSV" budovy.csv ruian.gpkg -sql "SELECT s2.Kod, round(ST_Distance(s1.geom, s2.geom)) dist
-                            FROM stavebniobjekty s1 JOIN stavebniobjekty s2 ON
-                            (s1.Kod = 4598652 AND
-                            s2.PocetPodlazi > 2 AND
-                            ST_Distance(s1.geom, s2.geom) < 500)
-                            ORDER BY ST_Distance(s1.geom, s2.geom)"
+           FROM stavebniobjekty s1 JOIN stavebniobjekty s2 ON
+           (s1.Kod = 4598652 AND
+           s2.PocetPodlazi > 2 AND
+           ST_Distance(s1.geom, s2.geom) < 500)
+           ORDER BY ST_Distance(s1.geom, s2.geom)"
 
-Po zadání daného příkazu dostaneme soubor budovy.csv s následujícím obsahem.
+Po zadání daného příkazu dostaneme soubor :file:`budovy.csv` s následujícím obsahem.
 
 .. code-block:: bash
 
@@ -82,6 +83,6 @@ Po zadání daného příkazu dostaneme soubor budovy.csv s následujícím obsa
   "4596684",491
 
 .. tip:: Vektorové formáty, do kterých můžete realizovat export najdete na
-         <https://gdal.org/drivers/vector/index.html>.
+         https://gdal.org/drivers/vector/index.html.
 
 .. TODO - další využití

@@ -4,8 +4,9 @@
 Úvod do prostorových dotazů
 ---------------------------
 
-Prostorová data jsou v rámci databází úplně normální data uložena v tabulce, kde
-jeden z atributů (sloupečků) je geometrie objektu.
+Prostorová data jsou v rámci databází ukládána jako zcela běžná data
+ve formě tabulek, kde jeden z atributů (sloupečků) je geometrie
+objektu.
 
 Prostorové dotazy nejsou nic jiného, že standardní databázové dotazy typu
 :sqlcmd:`SELECT` s tím, že např. v podmínce :sqlcmd:`WHERE` aplikujeme
@@ -21,7 +22,7 @@ ST_AsText
 ^^^^^^^^^
 
 Geometrie jsou v databázi uloženy ve formátu WKB (well know binary) - pro lidi
-prakticky nečitelný zápis. Pro zobrazení ve formátu WKT (Well Known Text) slouží
+prakticky nečitelný zápis. Pro zobrazení ve formátu čitelném pro člověka - WKT (Well Known Text) - slouží
 tato funkce.  Může nám pomoci ke kontrole obsahu, např. zda máme
 očekávané souřadnice.
 
@@ -44,7 +45,6 @@ Tato funkce slouží k výpočtu plochy polygonu.
    SELECT st_area(geom) FROM parcely;
 
 .. figure:: images/ssql2.png
-   :class: large
 
    ST_Area
 
@@ -67,9 +67,9 @@ počet záznamů.
 ST_Intersects
 ^^^^^^^^^^^^^
 
-Tato funkce slouží k zjištění zda se dvě geometrie prostorově protínají.
+Tato funkce slouží k zjištění, zda se dvě geometrie prostorově protínají.
 Zde ji používáme v kombinaci dvou vrstev s využitím :sqlcmd:`JOIN`.
-V příkladu také používáme operátor :sqlcmd:`||`, který slouží, k zřetězení
+V příkladu také používáme operátor :sqlcmd:`||`, který slouží k zřetězení
 řetězců. Pomocí něj ze dvou atributů vytvoříme zápis parcelního čísla, tak jak
 jej známe, tedy číslo / podlomení.
 
@@ -85,7 +85,7 @@ jej známe, tedy číslo / podlomení.
    ST_Intersects
 
 Výsledkem dotazu jsou dvě parcely, protože ulice zasahuje svou geometrií do
-dvou parcel, tak jak je zobrazeno na dalším obrázku
+dvou parcel, tak jak je zobrazeno na dalším obrázku.
 
 .. figure:: images/ssql5.png
    :class: large

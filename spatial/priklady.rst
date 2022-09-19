@@ -12,9 +12,9 @@ ST_Buffer a ST_Intersects
 =========================
 
 Oblíbenou úlohou je hledání vztahu, do kterého vstupuje
-obálka :sqlcmd:`ST_Buffer` kolem geometrie.
+obálka (funkce :sqlcmd:`ST_Buffer`) kolem geometrie.
 
-Funkce má na vstupu geometrii a vzdálenost do které se má obálka konstruovat.
+Funkce má na vstupu geometrii a vzdálenost, do které se má obálka konstruovat.
 
 .. code-block:: sql
 
@@ -53,7 +53,7 @@ Funkce má na vstupu dvě geometrie.
 
    SELECT ST_Intersection(u.geom, p.geom);
 
-Tyto mohou být ze stejné tabulky, nebo z různých tabulek nebo
+Tyto mohou být ze stejné tabulky, nebo z různých tabulek anebo
 jak ukazuje následující příklad se může jednat i o výstup
 jiné funkce jako je :sqlcmd:`ST_Buffer`.
 
@@ -89,13 +89,13 @@ Jiným častým příkladem může být hledání sousedů. Zde je možno
 využít funkci :sqlcmd:`ST_Touches`. Např. nás zajímají ulice,
 které se napojují na ulici Československých tankistů.
 
-Funkce má na vstupu dvě geometrie a vrací True nebo False.
+Funkce má na vstupu dvě geometrie a vrací dva stavy: True nebo False.
 
 .. code-block:: sql
 
    SELECT ST_Touches(u1.geom, u2.geom);
 
-Následující příklad ukazuje případ, kdy jsou geometrie z jedné
+Následující ukázka ukazuje případ, kdy jsou geometrie z jedné
 tabulky.
 
 .. code-block:: sql
@@ -107,21 +107,20 @@ tabulky.
    ORDER BY u2.Nazev;
 
 .. figure:: images/ssql7.png
-   :class: large
 
    ST_Touches
 
 ST_Distance
 ===========
 
-Jiným příkladem, kde se pracuje se vzdáleností je použití funkce
+Jiným příkladem, kde se pracuje se vzdáleností, je použití funkce
 :sqlcmd:`ST_Distance`. Např. nás zajímají stavební objekty s počtem podlaží
 větším než 2, tedy vyšší budovy do vzdálenosti 500 m od obecního úřadu (Kód 4598652),
 na které bychom mohli umístit senzory hluku systému LoRa, tak aby mohly posílat
 signál na bránu umístěnou na úřadě.
 
 .. note:: Úloha je značně zjednodušená, protože neuvažujeme další parametry
-   jako např. digitální model terénu
+   jako např. digitální model terénu.
 
 .. code-block:: sql
 

@@ -5,13 +5,13 @@ Použití prostorových dotazů v QGIS
 ----------------------------------
 
 Doposud uváděné dotazy až na jednu výjimku nevracely geometrii,
-ale v rámci Správce databází je možné vrátit i geometrii
+ale v rámci :item:`Správce databází` je možné vrátit i geometrii
 a výsledek načíst do mapy.
 
 Načtení výsledku dotazu jako vrstvy
 ===================================
 
-Pokud rozšíříme seznam atributů v dotazu o atribut geom
+Pokud rozšíříme seznam atributů v dotazu o atribut :dbcolumn:`geom`
 umožní nám dialog následně načíst data jako vrstvu.
 
 .. code-block:: sql
