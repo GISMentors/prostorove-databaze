@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Úvod do SQL &#8212; Školení Úvod do prostorových databází</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Atributy v SQL" href="atributy.html" />
+    <link rel="prev" title="Jazyk SQL" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení Úvod do prostorových databází</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Jazyk SQL"
+             accesskey="P">předchozí</a> |
+          <a href="atributy.html" title="Atributy v SQL"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="uvod-do-sql">
+<span id="index-0"></span><h1>Úvod do SQL<a class="headerlink" href="#uvod-do-sql" title="Permalink to this heading">¶</a></h1>
+<p>Jazyk SQL může být i poměrně složitý, my se však podíváme
+jen na velmi omezenou množinu toho co se s jazykem dá dělat.</p>
+<section id="tabulka">
+<h2>Tabulka<a class="headerlink" href="#tabulka" title="Permalink to this heading">¶</a></h2>
+<p>Tabulka v jazyce SQL (správně označovaná jako relace - bavíme se o tzv.
+relačních databázích) se sestává
+z řádků. Každý řádek reprezentuje objekt (označovaný také jako geoprvek). Objekt je popsán
+atributy a jejich hodnoty jsou uloženy ve sloupcích (buňkách)
+tabulky.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/sql0.png" class="large" src="../_images/sql0.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 14 </span><span class="caption-text">Tabulka (relace)</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="struktura-dotazu">
+<h2>Struktura dotazu<a class="headerlink" href="#struktura-dotazu" title="Permalink to this heading">¶</a></h2>
+<p>Dotaz pokládáme velmi jednoduše. Ptáme se takto:</p>
+<p>Vyber mi tyto atributy z této tabulky.</p>
+<p>V jazyce SQL pak zapíšeme pomocí klíčových slov <span class="sqlcmd">SELECT</span> a <span class="sqlcmd">FROM</span>. Příkaz zakončíme středníkem.</p>
+<p>Celý zápis pak vypadá takto:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">atribut1</span><span class="p">,</span><span class="w"> </span><span class="n">atribut2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">tabulka</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Příklad výběru objektů z tabulky <span class="dbtable">parcely</span> databáze RÚIAN.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">DruhPozemkuKod</span><span class="p">,</span><span class="w"> </span><span class="n">VymeraParcely</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">parcely</span><span class="p">;</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id2">
+<img alt="../_images/sql1.png" class="large" src="../_images/sql1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 15 </span><span class="caption-text">Dotaz na parcely z RÚIAN v QGIS</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Úvod do prostorových databází</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Jazyk SQL</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Úvod do SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atributy.html">Atributy v SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="join.html">Vazby v SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view.html">Pohledy v SQL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial/index.html">Prostorové dotazy</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Jazyk SQL"
+              >předchozí</a> |
+            <a href="atributy.html" title="Atributy v SQL"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

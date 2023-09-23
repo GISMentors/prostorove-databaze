@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>GeoPackage &#8212; Školení Úvod do prostorových databází</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="MBTiles" href="mbtiles.html" />
+    <link rel="prev" title="Souborové databáze - SQLite" href="spatialite.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení Úvod do prostorových databází</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="spatialite.html" title="Souborové databáze - SQLite"
+             accesskey="P">předchozí</a> |
+          <a href="mbtiles.html" title="MBTiles"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="geopackage">
+<span id="index-0"></span><h1>GeoPackage<a class="headerlink" href="#geopackage" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="https://geopackage.org">OGC GeoPackage</a> je otevřený standard
+<a class="reference external" href="http://cs.wikipedia.org/wiki/OGC">OGC</a>. Jedná se o formát založený na SQLite. V nejčastěji používané
+variantě využívá ale i knihovny pro SpatiaLite. Oproti SpatiaLite
+přidává další struktury, a to zejména metadata a také možnosti uložení
+rastrových dat.</p>
+<p>V prostředí nástroje QGIS se můžete na GeoPackage dívat
+ze dvou pohledů.</p>
+<section id="geopackage-v-qgis-pristup-1">
+<h2>GeoPackage v QGIS - přístup 1<a class="headerlink" href="#geopackage-v-qgis-pristup-1" title="Permalink to this heading">¶</a></h2>
+<p>První z nich přístupuje ke GeoPackage jako k běžnému zdroji dat. Data
+načteteme např. v prohlížečí, jak ukazuje obrázek níže.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/geopackage.png" class="large" src="../_images/geopackage.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 11 </span><span class="caption-text">Načtení GeoPackage v QGIS</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Na obrázku vidíme v prohlížeči soubor ve formátu GeoPackage s obsahem
+dat z RÚIAN.</p>
+</section>
+<section id="geopackage-v-qgis-pristup-2">
+<h2>GeoPackage v QGIS - přístup 2<a class="headerlink" href="#geopackage-v-qgis-pristup-2" title="Permalink to this heading">¶</a></h2>
+<p>Druhý pohled na formát GeoPackage umožňuje správce databází. Zde
+můžete v plné síle využísqt dotazovací jazyk SQL, včetně prostorových
+dotazů.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/geopackage2.png" class="large" src="../_images/geopackage2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 12 </span><span class="caption-text">Správce databází GeoPackage v QGIS</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do prostorových databází</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="uvod.html">Úvod do prostorových databází</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spatialite.html">Souborové databáze - SQLite</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GeoPackage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mbtiles.html">MBTiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">Jazyk SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial/index.html">Prostorové dotazy</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="spatialite.html" title="Souborové databáze - SQLite"
+              >předchozí</a> |
+            <a href="mbtiles.html" title="MBTiles"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

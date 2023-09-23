@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Souborové databáze - SQLite &#8212; Školení Úvod do prostorových databází</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="GeoPackage" href="geopackage.html" />
+    <link rel="prev" title="Úvod do prostorových databází" href="uvod.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení Úvod do prostorových databází</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="uvod.html" title="Úvod do prostorových databází"
+             accesskey="P">předchozí</a> |
+          <a href="geopackage.html" title="GeoPackage"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="souborove-databaze-sqlite">
+<span id="index-0"></span><h1>Souborové databáze - SQLite<a class="headerlink" href="#souborove-databaze-sqlite" title="Permalink to this heading">¶</a></h1>
+<p>Již před příchodem <a class="reference external" href="http://cs.wikipedia.org/wiki/SQLite">SQLite</a> existovaly souborové
+databáze. Jako příklad můžeme uvést kdysi velmi oblíbený MS Access
+(JET). Výhoda souborového řešení je zejména v tom, že můžeme kdykoli
+snadno komukoli naši databázi předat.  Kdokoliv ji pak může snadno
+načíst, protože databázový systém SQLite je podporovaný širokou škálou
+programátorských knihoven. SQLite se využívá často jako pomocná
+databáze jak v deskopových prostředích, tak v mobilních zařízeních.</p>
+<p>V databázi je pak možné se dotazovat pomocí jazyka <a class="reference external" href="http://cs.wikipedia.org/wiki/SQL">SQL</a>
+(Structured Query Language) nebo jiného jazyka.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/sqlite-gui.png" class="middle" src="../_images/sqlite-gui.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 9 </span><span class="caption-text">Prohlížeč DB Browser pro SQLite.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="spatialite">
+<h2>SpatiaLite<a class="headerlink" href="#spatialite" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://www.gaia-gis.it/fossil/libspatialite/index">SpatiaLite</a> je
+prostorové rozšíření databáze SQLite. Přidává prostorové datové typy a
+základní prostorové dotazy a operace dle standardu OGC Simple Features
+Access.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Více o standardu Simple Features Access ve školení <a class="reference external" href="http://training.gismentors.eu/postgis-zacatecnik/kapitoly/1_uvod.html">PostGIS</a>.</p>
+</div>
+<p>K efektivním prostorovým dotazům slouží
+prostorové indexy v databázi.  Samotné dotazy pak realizuje knihovna (ovladač),
+kterým se aplikace k databázi připojuje.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/spatialite-gui.png" class="middle" src="../_images/spatialite-gui.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 10 </span><span class="caption-text">Prohlížeč spatialite-gui.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do prostorových databází</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="uvod.html">Úvod do prostorových databází</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Souborové databáze - SQLite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geopackage.html">GeoPackage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mbtiles.html">MBTiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">Jazyk SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial/index.html">Prostorové dotazy</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="uvod.html" title="Úvod do prostorových databází"
+              >předchozí</a> |
+            <a href="geopackage.html" title="GeoPackage"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

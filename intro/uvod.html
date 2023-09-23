@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Úvod do prostorových databází &#8212; Školení Úvod do prostorových databází</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Souborové databáze - SQLite" href="spatialite.html" />
+    <link rel="prev" title="Úvod do prostorových databází" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení Úvod do prostorových databází</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Úvod do prostorových databází"
+             accesskey="P">předchozí</a> |
+          <a href="spatialite.html" title="Souborové databáze - SQLite"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="uvod-do-prostorovych-databazi">
+<span id="index-0"></span><h1>Úvod do prostorových databází<a class="headerlink" href="#uvod-do-prostorovych-databazi" title="Permalink to this heading">¶</a></h1>
+<p>Prostorová data můžeme ukládat v různé podobě.
+Způsob uložení se velmi často liší v tom, zda se jedná o
+reprezentaci v podobě rastrových nebo vektorových dat, případně jiné struktury
+a zda jde o 2D nebo 3D (ND) data.</p>
+<section id="soubory-bez-indexace">
+<h2>Soubory bez indexace<a class="headerlink" href="#soubory-bez-indexace" title="Permalink to this heading">¶</a></h2>
+<p>Velmi častý způsob uložení je v podobě souborů, které
+často nemají žádnou doprovodnou informaci, tak aby bylo možné
+nad daty provádět prostorové dotazy. Příkladem může být
+třeba formát ESRI Shapefile, který v základu tvoří
+tři soubory formátů SHP, SHX a DBF. Přestože je formát SHX
+indexem, jde o index, který říká na kterém bajtu začínají a končí
+souřadnice geometrie jednotlivých vektorových prvků. K prostorovému
+dotazování tedy neslouží.</p>
+</section>
+<section id="soubory-s-indexaci">
+<h2>Soubory s indexací<a class="headerlink" href="#soubory-s-indexaci" title="Permalink to this heading">¶</a></h2>
+<p>I soubory typu ESRI Shapefile je možné opatřit
+prostorovým indexem. Díky tomuto indexu je pak dotazování
+výrazně rychlejší (např.
+<a class="reference external" href="https://gdal.org/drivers/vector/shapefile.html">GDAL</a> vytváří soubory s
+příponou <cite>.sbn</cite>). Soubor pro atributy - DBF - však žádnou indexaci neumožňuje.</p>
+<p>Zatímco ESRI Shapefile očekává, že pro každý typ geometrie dat (body, line, polygony)
+bude nutné mít několik souborů, existují řešení jako např. <a class="reference external" href="https://www.geopackage.org/">GeoPackage</a>,
+které ukládají data do jednoho souboru, a to i v případě několika typů geoprvků. GeoPackage
+také obsahuje prostorové indexy.</p>
+<p>Některé formáty však primárně indexy nemají a tedy je jejich
+účel v zásadě jiný. Příkladem může být GML, který je spíše jazykem
+a slouží pro výměnu geodat. U tohoto formátu si nejsme vědomi, že
+by k němu bylo možné vytvářet index a není tedy vhodné jej používat
+pro primární uložení geodat. Podobně je na tom (zejména na webu) populární
+GeoJSON, GeoRSS a podobné.</p>
+</section>
+<section id="serverove-prostorove-databaze">
+<h2>Serverové prostorové databáze<a class="headerlink" href="#serverove-prostorove-databaze" title="Permalink to this heading">¶</a></h2>
+<p>Zatímco souborová řešení předpokládají přístup přímo k souborům,
+serverová řešení soubory před uživateli schovávají za rozhraní.
+Výhodou serverového řešení je zejména přístup více uživatelů
+k datům, a to včetně centrálně řešeného zabezpečení. Někteří uživatelé tak mohou
+data pouze číst. Jiní mohou např. modifikovat vybraná data a
+správci mohou provádět zálohy dat a přiřazovat práva.</p>
+<p>Mezi známé zástupce této skupiny patří PostgreSQL/PostGIS,
+Oracle Spatial, MSSQL nebo třeba i noSQL systémy jako je MongoDB a ElasticSearch.</p>
+<p>Nevýhoda použití databázového serveru (centrálního řešení), je režie. Někdo
+musí databázový systém nainstalovat, konfigurovat, udržovat, přidělovat
+uživatelská práva, zálohovat, …</p>
+<p>Více o serverových řešeních se můžete dozvědět ve <a class="reference external" href="http://training.gismentors.eu/postgis-zacatecnik">školení PostGIS</a>.</p>
+</section>
+<section id="cloudove-prostorove-databaze">
+<h2>Cloudové prostorové databáze<a class="headerlink" href="#cloudove-prostorove-databaze" title="Permalink to this heading">¶</a></h2>
+<p>Cloudové řešení může nabývat celé řady podob od cloud-optimized
+systémů řízení báze dat až po clustery běžných serverových řešení.</p>
+<p>V případě clusterů se jedná v zásadě o standardní serverové prostorové databáze,
+provozované v některé z dnes
+dostupných cloudových infrastruktur (Azure, Google, Amazon AWS, …). Samozřejmě
+pod databází existuje (virtuální) stroj, na kterém je databáze provozovaná. Ten
+je ale optimalizovaný (co do konfigurace) pro běh databázových systémů. Cloudové
+prostředí umožňuje (relativně) jednoduchou zálohu, škálování, dostupnost pro
+určité síťové segmenty a tak podobně.</p>
+<p>V rámci tohoto školení se této problematice věnovat nebudeme.</p>
+</section>
+<section id="rastrova-data">
+<h2>Rastrová data<a class="headerlink" href="#rastrova-data" title="Permalink to this heading">¶</a></h2>
+<p>Do prostorových databází - souborových i těch, které využívají architekturu
+klient-server - lze ukládat i rastrová data. Toho je zhusta využíváno u
+některých dlaždicových rastrových formátů, ale nejenom.</p>
+<p>Výhoda uložení rastrů přímo do databáze je jednotná platforma pro jejich
+zpracování (jazyk SQL). Z hlediska výkonu jsou „rastry v databázi“ považovány za
+relativně pomalé, což se ale časem zlepšuje.</p>
+</section>
+<section id="pripojeni-prostorove-databaze-v-qgis">
+<h2>Připojení prostorové databáze v QGIS<a class="headerlink" href="#pripojeni-prostorove-databaze-v-qgis" title="Permalink to this heading">¶</a></h2>
+<p>V této fázi je dobré se podívat jak se taková prostorová databáze připojuje
+v prostředí nástroje QGIS.</p>
+<p>Nejdříve si nainstalujeme zásuvný modul RÚIAN, abychom si snadno
+stáhli cvičná data volně dostupná v rámci <a class="reference external" href="http://cs.wikipedia.org/wiki/Registr územní identifikace, adres a nemovitostí">RÚIAN</a> a uložili do formátu
+souborové prostorové geodatabáze (v našem případě použijeme formát OGC
+GeoPackage).</p>
+<p>Použijeme nabídku <span class="menuselection">Zásuvné moduly ‣ Správa a
+instalace zásuvných modulů</span>.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/plugins1.png" class="large" src="../_images/plugins1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 2 </span><span class="caption-text">Instalace zásuvných modulů</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V dialogovém okně zadáme vyhledávat RUIAN a pak nalezený
+plugin nainstalujeme.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/ruian.png" class="large" src="../_images/ruian.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 3 </span><span class="caption-text">Instalace zásuvného modulu RUIAN</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Na liště zásuvných modulů přibude tlačítko pro spuštění tohoto modulu.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/ruian2.png" class="large" src="../_images/ruian2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 4 </span><span class="caption-text">Spuštění zásuvného modulu RUIAN</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Po spuštění volíme uložení do formátu OGC GeoPackage.</p>
+<figure class="align-center" id="id4">
+<img alt="../_images/ruian3.png" class="large" src="../_images/ruian3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 5 </span><span class="caption-text">Uložení do OGC GeoPackage v zásuvném modulu RUIAN</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Zadáme obec Dolní Lhota (u Ostravy) a dáme importovat.</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/ruian4.png" class="large" src="../_images/ruian4.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 6 </span><span class="caption-text">Import dat z obce Dolní Lhota</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Pokud jsme na závěr importu zvolili vložení dat do mapy,
+vidíme v mapě parcely a budovy obce Dolní Lhota.</p>
+<p>Připojení prostorové databáze lze v nástroji QGIS realizovat
+několika způsoby, ale zdá se, že nejlepší pokrytí různých
+typů úložišť v tomto případě nabízí panel <span class="item">Prohlížeč</span>.</p>
+<p>Pokud klikneme v <span class="item">Prohlížeči</span> pravým tlačítkem myši na některý z
+typů úložišť prostorových databází dostaneme možnost vytvořit
+<span class="item">Nové připojení</span>. Na obrázku níže jsou dostupná následující
+úložiště: GeoPackage, SpatiaLite, PostGIS, MSSQL a DB2.</p>
+<p>Zvolíme <span class="item">GeoPackage</span> a <span class="item">Nové připojení</span>.</p>
+<figure class="align-center" id="id6">
+<img alt="../_images/connection.png" class="large" src="../_images/connection.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 7 </span><span class="caption-text">Nové připojení GeoPackage</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Vybereme v předchozím kroku uložený <code class="file docutils literal notranslate"><span class="pre">ruian.gpkg</span></code> a máme připojeno.
+V <span class="item">Prohlížeči</span> pak můžeme procházet připojení a prohlížet si
+tabulky této souborové databáze.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/connection2.png" class="large" src="../_images/connection2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 8 </span><span class="caption-text">Připojený GeoPackage v Prohlížeči</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Takto realizované připojení můžeme pak využívat např. ve
+<span class="item">Správci databází</span>, kterého budeme používat dále.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do prostorových databází</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Úvod do prostorových databází</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spatialite.html">Souborové databáze - SQLite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geopackage.html">GeoPackage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mbtiles.html">MBTiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">Jazyk SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial/index.html">Prostorové dotazy</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Úvod do prostorových databází"
+              >předchozí</a> |
+            <a href="spatialite.html" title="Souborové databáze - SQLite"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

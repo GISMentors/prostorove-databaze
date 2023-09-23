@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Použití prostorových dotazů v QGIS &#8212; Školení Úvod do prostorových databází</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Použití prostorových dotazů v GDAL" href="gdal.html" />
+    <link rel="prev" title="Příklady prostorových dotazů" href="priklady.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení Úvod do prostorových databází</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="priklady.html" title="Příklady prostorových dotazů"
+             accesskey="P">předchozí</a> |
+          <a href="gdal.html" title="Použití prostorových dotazů v GDAL"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pouziti-prostorovych-dotazu-v-qgis">
+<span id="index-0"></span><h1>Použití prostorových dotazů v QGIS<a class="headerlink" href="#pouziti-prostorovych-dotazu-v-qgis" title="Permalink to this heading">¶</a></h1>
+<p>Doposud uváděné dotazy až na jednu výjimku nevracely geometrii,
+ale v rámci <span class="item">Správce databází</span> je možné vrátit i geometrii
+a výsledek načíst do mapy.</p>
+<section id="nacteni-vysledku-dotazu-jako-vrstvy">
+<h2>Načtení výsledku dotazu jako vrstvy<a class="headerlink" href="#nacteni-vysledku-dotazu-jako-vrstvy" title="Permalink to this heading">¶</a></h2>
+<p>Pokud rozšíříme seznam atributů v dotazu o atribut <span class="dbcolumn">geom</span>
+umožní nám dialog následně načíst data jako vrstvu.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">Kod</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="n">ST_Distance</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">geom</span><span class="p">))</span><span class="w"> </span><span class="n">dist</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">stavebniobjekty</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">stavebniobjekty</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="k">ON</span>
+<span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">Kod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4598652</span><span class="w"> </span><span class="k">AND</span>
+<span class="n">s2</span><span class="p">.</span><span class="n">PocetPodlazi</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">AND</span>
+<span class="n">ST_Distance</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">500</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ST_Distance</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id1">
+<img alt="../_images/ssql9.png" class="large" src="../_images/ssql9.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 33 </span><span class="caption-text">Rozšíření dotazu o geometrii a načtení jako vrstvy</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Červeně jsou vykresleny budovy získané předchozím dotazem.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/ssql10.png" class="large" src="../_images/ssql10.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 34 </span><span class="caption-text">Dotaz jako vrstva</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Úvod do prostorových databází</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">Jazyk SQL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Prostorové dotazy</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="uvod.html">Úvod do prostorových dotazů</a></li>
+<li class="toctree-l2"><a class="reference internal" href="priklady.html">Příklady prostorových dotazů</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Použití prostorových dotazů v QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdal.html">Použití prostorových dotazů v GDAL</a></li>
+</ul>
+</li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="priklady.html" title="Příklady prostorových dotazů"
+              >předchozí</a> |
+            <a href="gdal.html" title="Použití prostorových dotazů v GDAL"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

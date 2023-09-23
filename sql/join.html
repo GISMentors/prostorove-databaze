@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Vazby v SQL &#8212; Školení Úvod do prostorových databází</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Pohledy v SQL" href="view.html" />
+    <link rel="prev" title="Atributy v SQL" href="atributy.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení Úvod do prostorových databází</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="atributy.html" title="Atributy v SQL"
+             accesskey="P">předchozí</a> |
+          <a href="view.html" title="Pohledy v SQL"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="vazby-v-sql">
+<span id="index-0"></span><h1>Vazby v SQL<a class="headerlink" href="#vazby-v-sql" title="Permalink to this heading">¶</a></h1>
+<p>Jednou ze zásadních vlastností databází, které využívají SQL, je
+možnost propojování tabulek mezi sebou. Možností propojení je celá řada.
+My si zde pro zjednodušení ukážeme nejednodušší vazbu, takzvané přirozené
+spojení.</p>
+<section id="prirozene-spojeni">
+<h2>Přirozené spojení<a class="headerlink" href="#prirozene-spojeni" title="Permalink to this heading">¶</a></h2>
+<p>V tabulce <span class="dbtable">parcely</span>, kterou už trochu známe, máme atribut <span class="dbcolumn">KatastralniUzemiKod</span>.
+V tabulce, ale chybí název katastrálního území. Ten je ale v tabulce
+<span class="dbcolumn">katastralniuzemi</span>. Pro spojení těchto dvou tabulek použijeme
+klíčová slova <span class="sqlcmd">JOIN</span> a <span class="sqlcmd">ON</span> a operátor <span class="sqlcmd">=</span>.
+V kódu ještě používáme klíčové slovo <span class="sqlcmd">AS</span>, které slouží k definování
+aliasu pro název tabulky, aby výsledký příkaz nebyl extrémně dlouhý, případně k
+jiným operacím (třeba ke virtuálním spojení tabulky se sebou samou). Klíčové
+slovo <span class="sqlcmd">AS</span> je možno vynechat.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">DruhPozemkuKod</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">VymeraParcely</span><span class="p">,</span><span class="w"> </span><span class="n">ku</span><span class="p">.</span><span class="n">Nazev</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">parcely</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">p</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">katastralniuzemi</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ku</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">KatastralniUzemiKod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ku</span><span class="p">.</span><span class="n">Kod</span><span class="p">);</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id1">
+<img alt="../_images/sql6.png" class="large" src="../_images/sql6.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 22 </span><span class="caption-text">Přirozené spojení</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Výsledkem tohoto dotazu je seznam parcel i s názvem katastrálního území.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Úvod do prostorových databází</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Jazyk SQL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="uvod.html">Úvod do SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atributy.html">Atributy v SQL</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Vazby v SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="view.html">Pohledy v SQL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial/index.html">Prostorové dotazy</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="atributy.html" title="Atributy v SQL"
+              >předchozí</a> |
+            <a href="view.html" title="Pohledy v SQL"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Příklady prostorových dotazů &#8212; Školení Úvod do prostorových databází</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Použití prostorových dotazů v QGIS" href="qgis.html" />
+    <link rel="prev" title="Úvod do prostorových dotazů" href="uvod.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení Úvod do prostorových databází</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="uvod.html" title="Úvod do prostorových dotazů"
+             accesskey="P">předchozí</a> |
+          <a href="qgis.html" title="Použití prostorových dotazů v QGIS"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="priklady-prostorovych-dotazu">
+<span id="index-0"></span><h1>Příklady prostorových dotazů<a class="headerlink" href="#priklady-prostorovych-dotazu" title="Permalink to this heading">¶</a></h1>
+<p>V této části se podíváme na další funkce, které můžete
+v prostorových databázích využívat. Projdeme si je
+na konkrétních příkladech.</p>
+<section id="st-buffer-a-st-intersects">
+<h2>ST_Buffer a ST_Intersects<a class="headerlink" href="#st-buffer-a-st-intersects" title="Permalink to this heading">¶</a></h2>
+<p>Oblíbenou úlohou je hledání vztahu, do kterého vstupuje
+obálka (funkce <span class="sqlcmd">ST_Buffer</span>) kolem geometrie.</p>
+<p>Funkce má na vstupu geometrii a vzdálenost, do které se má obálka konstruovat.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Buffer</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Funkci pak můžeme použít uvnitř jiné funkce jako je nám již známý ST_Intersects
+a získat tak např. seznam stavebních parcel, do kterých zasahuje obalová zóna 5 m
+kolem osy ulice Podevsí.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">KmenoveCislo</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">PododdeleniCisla</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">DruhPozemkuKod</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ulice</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">parcely</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span>
+<span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">Nazev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Podevsí&#39;</span><span class="w"> </span><span class="k">AND</span>
+<span class="n">ST_Intersects</span><span class="p">(</span><span class="n">ST_Buffer</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">AND</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">DruhPozemkuKod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">);</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id1">
+<img alt="../_images/ssql6.png" class="large" src="../_images/ssql6.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 28 </span><span class="caption-text">ST_Buffer</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="st-intersection">
+<h2>ST_Intersection<a class="headerlink" href="#st-intersection" title="Permalink to this heading">¶</a></h2>
+<p>Někdy nás může zajímat nejen zda se plochy překrývají, ale
+zajímá nás i geometrie toho překryvu. V tomto případě tedy kromě
+již použitých funkcí <span class="sqlcmd">ST_Buffer</span> a <span class="sqlcmd">ST_Intersects</span>
+přidáme funkci <span class="sqlcmd">ST_Intersection</span>, která nám vrátí právě plochy
+toho překryvu.</p>
+<p>Funkce má na vstupu dvě geometrie.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Intersection</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Tyto mohou být ze stejné tabulky, nebo z různých tabulek anebo
+jak ukazuje následující příklad se může jednat i o výstup
+jiné funkce jako je <span class="sqlcmd">ST_Buffer</span>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Intersection</span><span class="p">(</span><span class="n">ST_Buffer</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span><span class="p">,</span>
+<span class="n">p</span><span class="p">.</span><span class="n">KmenoveCislo</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">PododdeleniCisla</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">DruhPozemkuKod</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ulice</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">parcely</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span>
+<span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">Nazev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Podevsí&#39;</span><span class="w"> </span><span class="k">AND</span>
+<span class="n">ST_Intersects</span><span class="p">(</span><span class="n">ST_Buffer</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">AND</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">DruhPozemkuKod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">);</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id2">
+<img alt="../_images/ssql11.png" class="large" src="../_images/ssql11.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 29 </span><span class="caption-text">ST_Intersection</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Výsledek dotazu můžeme přidat jako novou vrstvu do mapy.
+Toto je podrobněji popsáno dále.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/ssql12.png" class="large" src="../_images/ssql12.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 30 </span><span class="caption-text">Zobrazení výsledku ST_Intersection v mapě</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Na obrázku jsou plochy vyznačeny oranžovou barvou.</p>
+</section>
+<section id="st-touches">
+<h2>ST_Touches<a class="headerlink" href="#st-touches" title="Permalink to this heading">¶</a></h2>
+<p>Jiným častým příkladem může být hledání sousedů. Zde je možno
+využít funkci <span class="sqlcmd">ST_Touches</span>. Např. nás zajímají ulice,
+které se napojují na ulici Československých tankistů.</p>
+<p>Funkce má na vstupu dvě geometrie a vrací dva stavy: True nebo False.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Touches</span><span class="p">(</span><span class="n">u1</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">u2</span><span class="p">.</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Následující ukázka ukazuje případ, kdy jsou geometrie z jedné
+tabulky.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">u2</span><span class="p">.</span><span class="n">Nazev</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ulice</span><span class="w"> </span><span class="n">u1</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ulice</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="k">ON</span>
+<span class="p">(</span><span class="n">u1</span><span class="p">.</span><span class="n">Nazev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Československých tankistů&#39;</span><span class="w"> </span><span class="k">AND</span>
+<span class="n">ST_Touches</span><span class="p">(</span><span class="n">u1</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">u2</span><span class="p">.</span><span class="n">geom</span><span class="p">))</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">u2</span><span class="p">.</span><span class="n">Nazev</span><span class="p">;</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id4">
+<img alt="../_images/ssql7.png" src="../_images/ssql7.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 31 </span><span class="caption-text">ST_Touches</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="st-distance">
+<h2>ST_Distance<a class="headerlink" href="#st-distance" title="Permalink to this heading">¶</a></h2>
+<p>Jiným příkladem, kde se pracuje se vzdáleností, je použití funkce
+<span class="sqlcmd">ST_Distance</span>. Např. nás zajímají stavební objekty s počtem podlaží
+větším než 2, tedy vyšší budovy do vzdálenosti 500 m od obecního úřadu (Kód 4598652),
+na které bychom mohli umístit senzory hluku systému LoRa, tak aby mohly posílat
+signál na bránu umístěnou na úřadě.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Úloha je značně zjednodušená, protože neuvažujeme další parametry
+jako např. digitální model terénu.</p>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">Kod</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="n">ST_Distance</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">geom</span><span class="p">))</span><span class="w"> </span><span class="n">dist</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">stavebniobjekty</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">stavebniobjekty</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="k">ON</span>
+<span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">Kod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4598652</span><span class="w"> </span><span class="k">AND</span>
+<span class="n">s2</span><span class="p">.</span><span class="n">PocetPodlazi</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">AND</span>
+<span class="n">ST_Distance</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">500</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ST_Distance</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id5">
+<img alt="../_images/ssql8.png" class="large" src="../_images/ssql8.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 32 </span><span class="caption-text">ST_Distance</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Úvod do prostorových databází</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">Jazyk SQL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Prostorové dotazy</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="uvod.html">Úvod do prostorových dotazů</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Příklady prostorových dotazů</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qgis.html">Použití prostorových dotazů v QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdal.html">Použití prostorových dotazů v GDAL</a></li>
+</ul>
+</li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="uvod.html" title="Úvod do prostorových dotazů"
+              >předchozí</a> |
+            <a href="qgis.html" title="Použití prostorových dotazů v QGIS"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
